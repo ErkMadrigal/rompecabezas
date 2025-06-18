@@ -1,0 +1,324 @@
+body {
+
+    min-height: 100vh;
+    background: radial-gradient(
+        circle at center,
+        #596A93 0%,
+        #596A93 5%,
+        #11151C 40%
+    );
+   
+}
+
+
+ /* Navbar transparente */
+ .navbar-transparent {
+    background-color: rgba(0, 0, 0, 0.1) !important; /* Ajusta el valor alpha (0.3) para más/menos transparencia */
+    backdrop-filter: blur(8px); /* Efecto de difuminado para mejor legibilidad */
+    transition: background-color 0.3s ease;
+}
+
+.navbar-transparent:hover {
+    background-color: rgba(0, 0, 0, 0.5) !important; /* Efecto hover */
+}
+
+/* Estilo para el SVG (opcional) */
+.navbar-brand svg {
+    fill: white; /* Color del logo */
+    transition: transform 0.3s ease;
+}
+
+.navbar-brand svg:hover {
+    transform: scale(1.05); /* Efecto hover en el logo */
+}
+
+.gradient-text {
+    /* Degradado lineal horizontal */
+    background: linear-gradient(91deg,rgba(151, 187, 241, 1) 0%, rgba(55, 76, 106, 1) 65%, rgba(55, 76, 106, 1) 100%);
+    
+    /* Aplicar el gradiente SOLO al texto */
+    -webkit-background-clip: text; /* Soporte para navegadores WebKit (Chrome, Safari) */
+    background-clip: text;
+    -webkit-text-fill-color: transparent; /* Hace el texto transparente para mostrar el gradiente */
+    
+    /* Estilos adicionales (opcionales) */
+    font-size: 3rem;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    display: inline-block; /* Para que el gradiente no ocupe toda la línea */
+}
+
+
+.glass-card {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 1.5rem;
+    border: 1px solid transparent; /* Borde transparente para el gradiente */
+    padding: 20px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    /* box-shadow: 
+        0 0 10px rgba(255, 255, 255, 0.1),
+        0 8px 32px rgba(0, 0, 0, 0.1); */
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+/* Borde luminoso (base) */
+.glass-card::before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0),
+        rgba(255, 255, 255, 0.1),  /* Destello suave por defecto */
+        rgba(255, 255, 255, 0)
+    );
+    border-radius: 1.5rem;
+    z-index: -1;
+    opacity: 0; /* Inicialmente invisible */
+    transition: all 0.5s ease;
+}
+
+/* Efecto hover: activa el borde luminoso */
+.glass-card:hover {
+    background: rgba(255, 255, 255, 0.1);
+    
+     box-shadow: 0 0 10px rgba(255, 255, 255, 0.);
+}
+
+.glass-card:hover::before {
+    opacity: 1; /* Muestra el borde luminoso */
+    background: linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0),
+        rgba(161, 186, 239, 0.1),  /* Color #a1baef con destello */
+        rgba(255, 255, 255, 0)
+    );
+    animation: shine 2s infinite alternate; /* Animación solo en hover */
+}
+
+/* Animación del destello */
+@keyframes shine {
+    0% {
+        transform: scale(0.98);
+    }
+    100% {
+        transform: scale(1.02);
+    }
+}
+
+
+/* From Uiverse.io by wang3616359git */ 
+.bt {
+    border: none;
+    user-select: none;
+    font-size: 18px;
+    color: white;
+    text-align: center;
+    background-color: #000;
+    box-shadow: #cacaca 2px 2px 10px 1px;
+    border-radius: 12px;
+    height: 60px;
+    line-height: 60px;
+    width: 155px;
+    transition: all 0.2s ease;
+    position: relative;
+  }
+  
+  .msg {
+    height: 0;
+    width: 0;
+    border-radius: 2px;
+    position: absolute;
+    left: 15%;
+    top: 25%;
+  }
+  
+  .bt:active {
+    transition: all 0.001s ease;
+    background-color: #008aff;
+    box-shadow: #97989a 0 0 0 0;
+    transform: translateX(1px) translateY(1px);
+    
+  }
+  
+  .bt:active .msg, .bt:hover .msg {
+    animation: msgRun 2s forwards;
+  }
+
+  @media (hover: none) {
+    /* Estilos para dispositivos que no soportan hover (como móviles) */
+    .bt:active .msg {
+      animation: msgRun 2s forwards;
+    }
+  }
+  
+  @keyframes msgRun {
+    0% {
+      border-top: #d6d6d9 0 solid;
+      border-bottom: #f2f2f5 0 solid;
+      border-left: #f2f2f5 0 solid;
+      border-right: #f2f2f5 0 solid;
+    }
+  
+    20% {
+      border-top: #d6d6d9 14px solid;
+      border-bottom: #f2f2f5 14px solid;
+      border-left: #f2f2f5 20px solid;
+      border-right: #f2f2f5 20px solid;
+    }
+  
+    25% {
+      border-top: #d6d6d9 12px solid;
+      border-bottom: #f2f2f5 12px solid;
+      border-left: #f2f2f5 18px solid;
+      border-right: #f2f2f5 18px solid;
+    }
+  
+    80% {
+      border-top: transparent 12px solid;
+      border-bottom: transparent 12px solid;
+      border-left: transparent 18px solid;
+      border-right: transparent 18px solid;
+    }
+  
+    100% {
+      transform: translateX(150px);
+      border-top: transparent 12px solid;
+      border-bottom: transparent 12px solid;
+      border-left: transparent 18px solid;
+      border-right: transparent 18px solid;
+    }
+  }
+
+  .color-input {
+    background: rgba(7, 13, 22, 0.8);
+    border: 2px solid rgba(7, 13, 22, 0.4);
+    border-radius: 1.5rem;
+    box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.5);
+    color: white; /* Color del texto visible */
+    padding: 0.5rem 1rem; /* Espaciado interno para mejor legibilidad */
+    outline: none; /* Elimina el outline predeterminado del focus */
+    transition: all 0.3s ease; /* Transición suave para efectos */
+  }
+  
+  /* Estilo cuando el input está en focus o activo */
+  .color-input:focus {
+    background: rgba(7, 13, 22, 0.8); /* Mantiene el mismo fondo */
+    border-color: rgba(255, 255, 255, 0.6); /* Borde más claro para resaltar */
+    box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.5), 
+                0 0 10px 2px rgba(255, 255, 255, 0.3); /* Destello extra */
+    color: white; /* Asegura que el texto siga visible */
+  }
+
+
+
+  /* From Uiverse.io by itay1313 */ 
+.body {
+    --transition: all 0.55s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --yellow-bg: transparent linear-gradient(114deg, rgba(33, 33, 33, 1) 0%, rgba(55, 76, 106, 1) 100%) 0%
+      0% no-repeat padding-box;
+    color: white;
+    margin: 0;
+  }
+  
+  .btn-play {
+    border-radius: 23px;
+    letter-spacing: 0.8px;
+    font-size: 14px;
+    font-weight: 300;
+    color: white;
+    white-space: nowrap;
+    margin: 20px auto;
+    width: 166px;
+    height: 45px;
+    cursor: pointer;
+    position: relative;
+    border: 1px solid rgba(55, 76, 106, 1);
+    background: transparent;
+  }
+  
+  .btn-play::before {
+    -webkit-transition: var(--transition);
+    transition: var(--transition);
+    content: "";
+    width: 50%;
+    height: 100%;
+    background: black;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  
+  .btn-play:hover::before {
+    width: 100%;
+  }
+  
+  .btn-play.btn-play-hover {
+    border-radius: 50px;
+    position: relative;
+  }
+  
+  .btn-play.btn-play-hover .btn-play-text {
+    color: white;
+    -webkit-transition: var(--transition);
+    transition: var(--transition);
+    mix-blend-mode: lighten;
+  }
+  
+  .btn-play.btn-play-hover::before {
+    border-radius: 50px;
+    width: 100%;
+    background: conic-gradient(
+      transparent 240deg, rgba(55, 76, 106, 1) 240deg,
+      rgba(33, 33, 33, 1) 300deg, transparent 300deg
+    )
+    100% / 64%
+    no-repeat, var(--yellow-bg);
+  }
+  
+  .btn-play.btn-play-hover:hover .btn-play-text {
+    margin-right: 30px;
+  }
+  
+  .btn-play.btn-play-hover:hover::before {
+    background-position: right;
+    border-radius: 23px;
+    width: 25%;
+  }
+  
+
+
+
+  .btn-final {
+    font-size: 1.2rem;
+    padding: 1rem 2.5rem;
+    border: none;
+    outline: none;
+    border-radius: 0.4rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    background-color: rgb(14, 14, 26);
+    color: rgb(234, 234, 234);
+    font-weight: 700;
+    transition: 0.6s;
+    box-shadow: 0px 0px 60px #1f4c65;
+    -webkit-box-reflect: below 10px linear-gradient(to bottom, rgba(0,0,0,0.0), rgba(0,0,0,0.4));
+  }
+  
+  .btn-final:active {
+    scale: 0.92;
+  }
+  
+  .btn-final:hover {
+    background: rgb(2,29,78);
+    background: linear-gradient(270deg, rgba(2, 29, 78, 0.681) 0%, rgba(0, 138, 255, 0.873) 60%);
+    color: rgb(4, 4, 38);
+  }
