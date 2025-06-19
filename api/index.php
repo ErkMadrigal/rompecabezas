@@ -93,21 +93,33 @@ switch ($opcion) {
             break;
         }else{
             echo json_encode(
-                $inserciones::setUsuario($data['nombre'], $data['email'], $fecha_actual, etapa: 1)
+                $inserciones::setUsuario($data['nombre'], $data['email'], $fecha_actual, etapa: 0)
             );
         }
         break;
 
-    case "respuesta":
-        $fecha_actual = date("Y-m-d H:i:s");
+    case "asignarRespuesta":
+        if (empty($data['idCliente']) || empty($data['respuesta'])) {
+            http_response_code(400);
+            echo json_encode(["status" => "error", "message" => "ID de cliente y respuesta son requeridos"]);
+            break;
+        }else {
+            echo json_encode(
+                $inserciones::setRespuesta($data['idCliente'], $data['idRespuesta'], $data['respuesta'], $data['tipoRespuesta'])
+            );
+        }
+        break;
+
+    case "getEtapa":
         if (empty($data['idCliente'])) {
             http_response_code(400);
-            echo json_encode(["status" => "error", "message" => "ID de cliente requerido"]);
+            echo json_encode(["status" => "error", "message" => "ID de cliente es requerido"]);
             break;
+        } else {
+            echo json_encode(
+                $consultas::getEtapa($data['idCliente'])
+            );
         }
-        echo json_encode(
-            $inserciones::setRespuestaInicio($data['idCliente'], $fecha_actual)
-        );
         break;
 
     default:

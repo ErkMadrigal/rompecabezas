@@ -1,4 +1,4 @@
-<?php $links = ['./css/style_5x5.css']; ?>
+<?php $links = ['https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css', './css/style_5x5.css']; ?>
 <?php include "./components/nav.php"?>
 
 <main class="">
@@ -24,5 +24,5 @@
         Copyright© 1995-2025 Samsung. Todos los derechos reservados.
     </small>
 </main>
-<?php  $scripts = ['./js/5x5.js']?>
+<?php  $scripts = ['https://cdn.jsdelivr.net/npm/sweetalert2@11', './js/5x5.js']?>
 <?php include "./components/footer.php"?>

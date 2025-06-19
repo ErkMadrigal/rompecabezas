@@ -4,6 +4,8 @@ const timerElement = document.getElementById("timer");
 let hasWon = false;
 let startTime;
 let timerInterval;
+const url = 'http://localhost/puzzle/api/'; // URL de ejemplo para enviar el formulario
+
 
 const size = 5; // Cambiado de 4 a 5
 const total = size * size;
@@ -50,6 +52,61 @@ function render() {
     addDragEvents();
 }
 
+(() => { 
+    if (localStorage.getItem('client_id') === null || localStorage.getItem('respuesta_id') === null) { 
+        window.location.href = 'registro';
+    }
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            opcion: 'getEtapa',
+            idCliente: localStorage.getItem('client_id'),
+        })
+    })
+    .then(response => {
+        if (response.ok) {
+            return response.json();
+        } else {
+            throw new Error('Error en la respuesta del servidor');
+        }
+    })
+        .then(data => {
+        
+        link(data.data.etapa);
+    })
+    .catch(error => {
+        console.error('Error en la solicitud:', error);
+        Toast.fire({
+            icon: "error",
+            title: "Ocurrió un error al enviar los datos"
+        });
+    });
+})();
+
+const link = (etapa) => {
+    switch (etapa) {
+        case 0:
+            // Si la etapa es 0, redirigir a la página de inicio
+            if (localStorage.getItem('client_id') === null || localStorage.getItem('respuesta_id') === null) { 
+                window.location.href = 'index';
+            } 
+            break;
+        case 1:
+            // Si la etapa es 1, redirigir a la página del primer nivel
+            window.location.href = 'second';
+            break;
+        case 2:
+            // Si la etapa es 2, iniciar el juego del segundo nivel
+            window.location.href = 'final';
+            break;
+        default:
+            console.error('Etapa no reconocida:', data.etapa);
+    }
+}
+
 function swap(i, j) {
     [positions[i], positions[j]] = [positions[j], positions[i]];
     render();
@@ -61,11 +118,48 @@ function checkWin() {
     if (isCorrect && !hasWon) {
         stopTimer();
         const elapsedSeconds = Math.floor((Date.now() - startTime) / 1000);
-        message.textContent = "🎉 ¡Puzzle completado!";
-        setTimeout(() => {
-            alert(`¡Felicidades! Has completado el puzzle correctamente.\nTiempo: ${formatTime(elapsedSeconds)}`);
-        }, 300);
-        window.location.href = `second`;
+        // message.textContent = "🎉 ¡Puzzle completado!";
+        // formatTime(elapsedSeconds)
+       
+        
+        Swal.fire({
+            icon: "success",
+            title: "Felicidades 🎉",
+            text: "¡has completado el primer nivel del juego!",
+            confirmButtonText: "Continuar"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        opcion: 'asignarRespuesta',
+                        respuesta: formatTime(elapsedSeconds),
+                        idCliente: localStorage.getItem('client_id'),
+                        idRespuesta: localStorage.getItem('respuesta_id'),
+                        tipoRespuesta: 1
+                    })
+                })
+                .then(response => {
+                    if (response.ok) {
+                        // Redirige a la siguiente página si todo va bien
+                        window.location.href = 'second';
+                    } else {
+                        throw new Error('Error en la respuesta del servidor');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error en la solicitud:', error);
+                    Toast.fire({
+                        icon: "error",
+                        title: "Ocurrió un error al enviar los datos"
+                    });
+                });
+            }
+        });
+        
         hasWon = true;
     } else if (!isCorrect) {
         message.textContent = "";
@@ -145,6 +239,18 @@ function addDragEvents() {
     });
 }
 
+
+const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.onmouseenter = Swal.stopTimer;
+      toast.onmouseleave = Swal.resumeTimer;
+    }
+  });
 // Iniciar el juego
 render();
 startTimer();

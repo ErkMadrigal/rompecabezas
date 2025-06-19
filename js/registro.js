@@ -39,12 +39,13 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
               })
               .then(data => {
-                  console.log('Éxito:', data);
+                //   console.log('Éxito:', data);
                   Toast.fire({
                     icon: "success",
                     title: data.mensaje
                   });
-                  localStorage.setItem('client_id', data.last_insert_id);
+                  localStorage.setItem('respuesta_id', data.last_insert_id_respuesta);
+                  localStorage.setItem('client_id', data.last_insert_id_client);
                   setInterval(() => {
                     window.location.href = 'first';
                   }, 3000); // Redirigir después de 3 segundos
@@ -62,6 +63,61 @@ document.addEventListener('DOMContentLoaded', function() {
         // Agregar clase de validación
         form.classList.add('was-validated');
     });
+    
+    (() => { 
+        if (localStorage.getItem('client_id') === null || localStorage.getItem('respuesta_id') === null) { 
+            return 0;
+        }
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                opcion: 'getEtapa',
+                idCliente: localStorage.getItem('client_id'),
+            })
+        })
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error('Error en la respuesta del servidor');
+            }
+        })
+        .then(data => {
+            // console.log('Etapa obtenida:', data.data.etapa);    
+            link(data.data.etapa);
+        })
+        .catch(error => {
+            console.error('Error en la solicitud:', error);
+            // Toast.fire({
+            //     icon: "error",
+            //     title: "Ocurrió un error al enviar los datos"
+            // });
+        });
+    })();
+    
+    const link = (etapa) => {
+        switch (etapa) {
+            case 0:
+                // Si la etapa es 0, redirigir a la página de inicio
+                if (localStorage.getItem('client_id') !== null || localStorage.getItem('respuesta_id') !== null) {
+                    window.location.href = 'first';
+                }
+                break;
+            case 1:
+                // Si la etapa es 1, redirigir a la página del primer nivel
+                window.location.href = 'second';
+                break;
+            case 2:
+                // Si la etapa es 2, iniciar el juego del segundo nivel
+                window.location.href = 'final';
+                break;
+            default:
+                console.error('Etapa no reconocida:', data.etapa);
+        }
+    }
     
     // Función para validar el nombre
     function validateName() {

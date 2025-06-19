@@ -23,10 +23,19 @@
                 $stmt->bindParam(":etapa", $etapa);
                 $stmt->execute();
                 $lastInsertID = $db->lastInsertId();
-
-                self::$respuesta["status"] = "ok";
-                self::$respuesta["mensaje"] = "Registro Exitoso";
-                self::$respuesta["last_insert_id"] = $lastInsertID;
+                if($lastInsertID == 0){
+                    throw new RuntimeException("Error al insertar el usuario");
+                }else{
+                    $respuestas = self::setRespuestaInicio($lastInsertID, $hora_registro);
+                    if($respuestas["status"] != "ok"){
+                        throw new RuntimeException("Error al insertar la respuesta de inicio: " . $respuestas["mensaje"]);
+                    }else{
+                        self::$respuesta['last_insert_id_respuesta'] = $respuestas["id"];
+                        self::$respuesta["status"] = "ok";
+                        self::$respuesta["mensaje"] = "Registro Exitoso";
+                        self::$respuesta["last_insert_id_client"] = $lastInsertID;
+                    }
+                }
                 
             } catch (RuntimeException $e) {
                 self::$respuesta["status"] = "error";
@@ -38,25 +47,6 @@
             return self::$respuesta;
             
         }
-
-        
-        public static function updateUsuario($id, $etapa){
-            try{
-                $sql = "UPDATE datos_personales SET etapa = :etapa where id = :id";
-                $db = self::$database::getConnection();
-                $stmt = $db->prepare($sql);
-                $stmt->bindParam(":etapa", $etapa);
-                $stmt->bindParam(":id", $id);
-                $stmt->execute();
-                self::$respuesta["status"] = "ok";
-                self::$respuesta["mensaje"] = "Exitoso";
-            }catch(PDOException $e){
-                self::$respuesta["status"] = "error";
-                self::$respuesta["mensaje"] = $e->getMessage();
-            }
-            return self::$respuesta;
-        }
-
 
         public static function setRespuestaInicio($id, $fecha_actual){
             try{
@@ -79,8 +69,9 @@
             }
             return self::$respuesta;
         }
+        
 
-        public static function setRespuesta($id, $respuesta, $tipoRes){
+        public static function setRespuesta($idCliente, $id, $respuesta, $tipoRes){
             try{
                 $sql = '';
                 if($tipoRes == 1){
@@ -116,6 +107,8 @@
                 $stmt->bindParam(":id", $id);
                 $stmt->execute();
                 
+                self::updateUsuario($idCliente, $tipoRes);
+
                 self::$respuesta["status"] = "ok";
                 self::$respuesta["mensaje"] = "Registro Exitoso";
             }catch(PDOException $e){
@@ -125,6 +118,22 @@
             return self::$respuesta;
         }
 
-
+        public static function updateUsuario($id, $etapa){
+            try{
+                $sql = "UPDATE datos_personales SET etapa = :etapa where id = :id";
+                $db = self::$database::getConnection();
+                $stmt = $db->prepare($sql);
+                $stmt->bindParam(":etapa", $etapa);
+                $stmt->bindParam(":id", $id);
+                $stmt->execute();
+                self::$respuesta["status"] = "ok";
+                self::$respuesta["mensaje"] = "Exitoso";
+            }catch(PDOException $e){
+                self::$respuesta["status"] = "error";
+                self::$respuesta["mensaje"] = $e->getMessage();
+            }
+            return self::$respuesta;
+        }
+        
 
     }

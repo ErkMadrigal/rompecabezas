@@ -9,7 +9,7 @@
             ganadores del nuevo Galaxy.</strong>
     </div>
     <div class="mb-3 mt-5 text-center">
-        <button class="btn-final mt-5 mb-5">
+        <button class="btn-final mt-5 mb-5" id="btnFinal">
             Cerrar
         </button>
     </div>
@@ -19,5 +19,5 @@
         Copyright© 1995-2025 Samsung. Todos los derechos reservados.
     </small>
 </main>
-
+<?php $scripts = ["js/final.js"]; ?>
 <?php include "./components/footer.php"?>
