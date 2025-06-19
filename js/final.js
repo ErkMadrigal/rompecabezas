@@ -8,7 +8,7 @@ btnFinal.onclick = () => {
     let timerInterval;
     Swal.fire({
         title: "¡Felicidades!",
-        html: "has completado el juego <br> borrando datos para un nuevo inicio <b></b>.",
+        html: "has completado el juego <br> Reiniciando datos para un nuevo inicio <b></b>.",
         timer: 3000,
         timerProgressBar: true,
         didOpen: () => {
@@ -24,7 +24,8 @@ btnFinal.onclick = () => {
     }).then((result) => {
         /* Read more about handling dismissals below */
         if (result.dismiss === Swal.DismissReason.timer) {
-            window.location.href = 'index';
+            // window.location.href = 'index';
+            window.parent.location.href
 
         }
     });

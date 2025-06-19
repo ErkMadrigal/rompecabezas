@@ -31,7 +31,8 @@
                             <div class="mb-3 form-check">
                                 <input type="checkbox" class="form-check-input" id="terminosCheck">
                                 <label class="form-check-label" for="exampleCheck1"><a
-                                        href="https://www.samsung.com/mx/info/terms-and-conditions">Terminos y
+                                        href="https://www.samsung.com/mx/info/terms-and-conditions"
+                                        target="_blank">Terminos y
                                         condiciones</a></label>
                                 <div class="invalid-feedback">
                                     Es requerido aceptar los terminos
@@ -42,7 +43,7 @@
                             <div class="mb-3 form-check">
                                 <input type="checkbox" class="form-check-input" id="avisoCheck">
                                 <label class="form-check-label" for="exampleCheck1"><a
-                                        href="https://www.samsung.com/mx/info/privacy/">Aviso de
+                                        href="https://www.samsung.com/mx/info/privacy/" target="_blank">Aviso de
                                         privacidad</a></label>
                                 <div class="invalid-feedback">
                                     Es requerido aceptar el aviso de privacidad

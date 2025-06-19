@@ -1,4 +1,4 @@
-<?php $links = ['./css/style_6x6.css']; ?>
+<?php $links = ['https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css', './css/style_5x5.css']; ?>
 
 <?php include "./components/nav.php"?>
 
@@ -12,7 +12,7 @@
     <div class="d-grid gap-2 col-11 mx-auto">
         <div class="card glass-card">
             <div class="card-body text-center">
-                <div id="timer">Tiempo: 00:00</div>
+                <div id="timer" class="d-none">Tiempo: 00:00</div>
                 <div id="puzzle-container"></div>
                 <p id="message"></p>
             </div>
@@ -25,5 +25,5 @@
         Copyright© 1995-2025 Samsung. Todos los derechos reservados.
     </small>
 </main>
-<?php  $scripts = ['./js/6x6.js']?>
+<?php  $scripts = ['https://cdn.jsdelivr.net/npm/sweetalert2@11', './js/5x5.js']?>
 <?php include "./components/footer.php"?>

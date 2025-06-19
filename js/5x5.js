@@ -73,16 +73,16 @@ function render() {
             throw new Error('Error en la respuesta del servidor');
         }
     })
-        .then(data => {
+    .then(data => {
         
-        link(data.data.etapa);
+            link(data.data.etapa);
     })
     .catch(error => {
         console.error('Error en la solicitud:', error);
-        Toast.fire({
-            icon: "error",
-            title: "Ocurrió un error al enviar los datos"
-        });
+        // Toast.fire({
+        //     icon: "error",
+        //     title: "Ocurrió un error al enviar los datos"
+        // });
     });
 })();
 
@@ -91,12 +91,13 @@ const link = (etapa) => {
         case 0:
             // Si la etapa es 0, redirigir a la página de inicio
             if (localStorage.getItem('client_id') === null || localStorage.getItem('respuesta_id') === null) { 
-                window.location.href = 'index';
-            } 
+                window.location.href = 'registro';
+            } else {
+                window.location.href = 'first';
+            }
             break;
         case 1:
-            // Si la etapa es 1, redirigir a la página del primer nivel
-            window.location.href = 'second';
+            return 0;
             break;
         case 2:
             // Si la etapa es 2, iniciar el juego del segundo nivel
@@ -125,7 +126,7 @@ function checkWin() {
         Swal.fire({
             icon: "success",
             title: "Felicidades 🎉",
-            text: "¡has completado el primer nivel del juego!",
+            text: "¡has completado el segundo nivel del juego!",
             confirmButtonText: "Continuar"
         }).then((result) => {
             if (result.isConfirmed) {
@@ -139,13 +140,13 @@ function checkWin() {
                         respuesta: formatTime(elapsedSeconds),
                         idCliente: localStorage.getItem('client_id'),
                         idRespuesta: localStorage.getItem('respuesta_id'),
-                        tipoRespuesta: 1
+                        tipoRespuesta: 2
                     })
                 })
                 .then(response => {
                     if (response.ok) {
                         // Redirige a la siguiente página si todo va bien
-                        window.location.href = 'second';
+                        window.location.href = 'final';
                     } else {
                         throw new Error('Error en la respuesta del servidor');
                     }
