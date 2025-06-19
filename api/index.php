@@ -122,6 +122,18 @@ switch ($opcion) {
         }
         break;
 
+    case "gettiempo":
+        if (empty($data['idCliente']) || empty($data['idRespuesta'])) {
+            http_response_code(400);
+            echo json_encode(["status" => "error", "message" => "ID de cliente es requerido"]);
+            break;
+        } else {
+            echo json_encode(
+                $consultas::getRespuestas($data['idCliente'], $data['idRespuesta'])
+            );
+        }
+        break;
+
     default:
         http_response_code(404);
         echo json_encode(["status" => "error", "message" => "Opción no válida"]);

@@ -59,6 +59,25 @@
         }
 
 
+        public static function getRespuestas($id_cliente, $id){
+            try{
+                $sql = "SELECT respuesta1, respuesta2 FROM respuestas WHERE id_datos_personales = :id_datos_personales and id = :id";
+                
+                $dbc = self::$database::getConnection();
+                $stmt = $dbc->prepare($sql);
+                $stmt->bindParam(":id_datos_personales", $id_cliente);
+                $stmt->bindParam(":id", $id);
+                $stmt->execute();
+                $data = $stmt->fetch(PDO::FETCH_ASSOC);  
+                self::$respuesta["status"] = "ok";
+                self::$respuesta["data"] = $data;
+            }catch(PDOException $e){
+                self::$respuesta["status"] = "error";
+                self::$respuesta["data"] = [];
+                self::$respuesta["mensaje"] = $e->getMessage();
+            }
+            return self::$respuesta;
+        }
         
     }
     
