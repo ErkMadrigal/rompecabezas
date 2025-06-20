@@ -21,8 +21,7 @@
 
 
     <small class="text-center text-white d-block mt-5 mb-3">
-        La promoción estará vigente desde el 15 de junio hasta el 25 de julio, únicamente en México.
-        Copyright© 1995-2025 Samsung. Todos los derechos reservados.
+        Vigencia del 23 de junio 5:00 p.m. al 08 de julio de 2025.
     </small>
 </main>
 <?php  $scripts = ['https://cdn.jsdelivr.net/npm/sweetalert2@11', './js/5x5.js']?>

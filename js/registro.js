@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Seleccionar el formulario
     const form = document.querySelector('.needs-validation');
-    const url = 'http://localhost/puzzle/api/'; // URL de ejemplo para enviar el formulario
+    const url = 'http://promosamsung.mx/api/'; // URL de ejemplo para enviar el formulario
     // Escuchar el evento submit
     form.addEventListener('submit', function(event) {
         // Prevenir el envío por defecto

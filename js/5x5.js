@@ -4,7 +4,7 @@ const timerElement = document.getElementById("timer");
 let hasWon = false;
 let startTime;
 let timerInterval;
-const url = 'http://localhost/puzzle/api/'; // URL de ejemplo para enviar el formulario
+const url = 'http://promosamsung.mx/api/'; // URL de ejemplo para enviar el formulario
 
 
 const size = 5; // Cambiado de 4 a 5

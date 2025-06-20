@@ -1,5 +1,5 @@
 let btnFinal = document.getElementById("btnFinal");
-const url = 'http://localhost/puzzle/api/'; // URL de ejemplo para enviar el formulario
+const url = 'http://promosamsung.mx/api/'; // URL de ejemplo para enviar el formulario
 let tiempo = document.getElementById("tiempo");
 
 btnFinal.onclick = () => { 

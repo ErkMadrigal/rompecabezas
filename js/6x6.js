@@ -4,7 +4,7 @@ const container = document.getElementById("puzzle-container");
         let hasWon = false;
         let startTime;
         let timerInterval;
-        const url = 'http://localhost/puzzle/api/'; // URL de ejemplo para enviar el formulario
+        const url = 'http://promosamsung.mx/api/'; // URL de ejemplo para enviar el formulario
 
         const size = 6; // Cambiado a 6x6
         const total = size * size;
