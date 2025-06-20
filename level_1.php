@@ -20,7 +20,7 @@
 
 
     <small class="text-center text-white d-block mt-5 mb-3">
-        Vigencia del 23 de junio 5:00 p.m. al 08 de julio de 2025.
+        Vigencia: Del 23 de junio (a partir de las 5:00 p.m.) al 08 de julio (hasta las 11:59 p.m.) de 2025.
     </small>
 </main>
 <?php  $scripts = ['https://cdn.jsdelivr.net/npm/sweetalert2@11', './js/4x4.js']?>
