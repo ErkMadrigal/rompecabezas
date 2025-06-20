@@ -6,8 +6,7 @@
     <div class="text-center mt-5">&nbsp;</div>
     <div class="d-grid gap-2 col-11 mx-auto">
         <h1 class="text-center mt-5 mb-3 gradient-text">Comencemos</h1>
-        <strong class="text-center text-white mb-4">Resuelve el rompecabezas en el menor tiempo
-            posible para uno de los 3 Galaxy.</strong>
+        <strong class="text-center text-white mb-4">Resuelve el rompecabezas para ganar uno de los 3 Galaxy.</strong>
     </div>
     <div class="d-grid gap-2 col-11 mx-auto">
         <div class="card glass-card">

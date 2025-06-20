@@ -18,7 +18,7 @@
         <!-- From Uiverse.io by itay1313 -->
         <div class="body">
             <button class="btn-play btn-play-hover" onclick="location.href='level_2'">
-                <span class="btn-play-text">comenzar</span>
+                <span class="btn-play-text">Comenzar</span>
             </button>
         </div>
     </div>
