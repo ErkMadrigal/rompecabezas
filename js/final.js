@@ -3,6 +3,8 @@ const url = 'http://localhost/puzzle/api/'; // URL de ejemplo para enviar el for
 let tiempo = document.getElementById("tiempo");
 
 btnFinal.onclick = () => { 
+    fin();
+
     localStorage.removeItem('respuesta_id');
     localStorage.removeItem('client_id');
     let timerInterval;
@@ -25,7 +27,7 @@ btnFinal.onclick = () => {
         /* Read more about handling dismissals below */
         if (result.dismiss === Swal.DismissReason.timer) {
             // window.location.href = 'index';
-            window.parent.location.href
+            window.parent.location.href = 'https://www.samsung.com/mx/'
 
         }
     });
@@ -33,7 +35,7 @@ btnFinal.onclick = () => {
 
 (() => { 
     if (localStorage.getItem('client_id') === null || localStorage.getItem('respuesta_id') === null) { 
-        // window.location.href = 'index';
+        window.location.href = 'index';
     }
     fetch(url, {
         method: 'POST',
@@ -55,7 +57,7 @@ btnFinal.onclick = () => {
     })
     .then(data => {
         const total = sumarTiemposEnMinutosYSegundos(data.data.respuesta1, data.data.respuesta2);
-        tiempo.textContent = `Tiempo total: ${total}`;
+        tiempo.textContent = `${total}`;
     })
     .catch(error => {
         console.error('Error en la solicitud:', error);
@@ -66,7 +68,7 @@ btnFinal.onclick = () => {
     });
 })();
 
-function sumarTiemposEnMinutosYSegundos(tiempo1, tiempo2) {
+const sumarTiemposEnMinutosYSegundos = (tiempo1, tiempo2) => {
     const [m1, s1] = tiempo1.split(':').map(Number);
     const [m2, s2] = tiempo2.split(':').map(Number);
 
@@ -79,4 +81,35 @@ function sumarTiemposEnMinutosYSegundos(tiempo1, tiempo2) {
     }
 
     return `${minutos} min ${segundos} seg`;
-  }
+}
+  
+const fin = () => { 
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            opcion: 'setFinalizar',
+            idCliente: localStorage.getItem('client_id'),
+            idRespuesta: localStorage.getItem('respuesta_id'),
+        })
+    })
+    .then(response => {
+        if (response.ok) {
+            return response.json();
+        } else {
+            throw new Error('Error en la respuesta del servidor');
+        }
+    })
+    .then(data => {
+        if (data.status === 'success') {
+            console.log('Datos enviados correctamente');
+        } else {
+            console.error('Error al enviar los datos:', data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Error en la solicitud:', error);
+    });
+}

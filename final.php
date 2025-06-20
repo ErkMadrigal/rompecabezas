@@ -6,13 +6,13 @@
     <div class="text-center mt-5">&nbsp;</div>
     <div class="d-grid gap-2 col-8 mx-auto">
         <h1 class="text-center mt-5 mb-3 gradient-text">¡Gracias por participar!</h1>
-        <strong class="text-center text-white mb-4">Tu tiempo fue de <b id="tiempo"></b>
+        <strong class="text-center text-white mb-4">¡Tu tiempo fue de <b id="tiempo"></b>!
             Pronto sabrás si eres uno de los 3
             ganadores del nuevo Galaxy.</strong>
     </div>
     <div class="mb-3 mt-5 text-center">
         <button class="btn-final mt-5 mb-5" id="btnFinal">
-            Cerrar
+            Conoce más
         </button>
     </div>
 

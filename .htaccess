@@ -9,6 +9,7 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^home$ index.php [L,QSA]
 RewriteRule ^index$ index.php [L,QSA]
 RewriteRule ^registro$ registro.php [L,QSA]
+RewriteRule ^instrucciones$ instrucciones.php [L,QSA]
 RewriteRule ^first$ first.php [L,QSA]
 RewriteRule ^level_1$ level_1.php [L,QSA]
 RewriteRule ^level_2$ level_2.php [L,QSA]

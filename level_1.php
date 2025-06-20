@@ -5,8 +5,8 @@
     <div class="text-center mt-5">&nbsp;</div>
     <div class="d-grid gap-2 col-11 mx-auto">
         <h1 class="text-center mt-5 mb-3 gradient-text">Comencemos</h1>
-        <strong class="text-center text-white mb-4">Resuelve el rompecabezas en el menor tiempo
-            posible para desbloquear el siguiente nivel.</strong>
+        <strong class="text-center text-white mb-4">Resuelve el rompecabezas para desbloquear
+            el siguiente nivel</strong>
     </div>
     <div class="d-grid gap-2 col-11 mx-auto">
         <div class="card glass-card">

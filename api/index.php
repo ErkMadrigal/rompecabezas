@@ -134,6 +134,18 @@ switch ($opcion) {
         }
         break;
 
+    case "setFinalizar":
+        if (empty($data['idCliente']) || empty($data['idRespuesta'])) {
+            http_response_code(400);
+            echo json_encode(["status" => "error", "message" => "ID de cliente es requerido"]);
+            break;
+        } else {
+            echo json_encode(
+                $inserciones::setFin($data['idRespuesta'], $data['idCliente'])
+            );
+        }
+        break;
+
     default:
         http_response_code(404);
         echo json_encode(["status" => "error", "message" => "Opción no válida"]);

@@ -1,4 +1,9 @@
 <?php
+require_once __DIR__ . '/../vendor/autoload.php';
+
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
+
+$dotenv->load();
 
 
 
@@ -14,13 +19,15 @@
         public static function setUsuario($nombre, $email, $hora_registro, $etapa){
             try{
                 
-                $sql = "INSERT INTO datos_personales (nombre, email, hora_registro, etapa) values(:nombre, :email, :hora_registro, :etapa)";
+                $sql = "INSERT INTO datos_personales (nombre, email, hora_registro, etapa) values(AES_ENCRYPT(:nombre, :clave), AES_ENCRYPT(:email, :clave), :hora_registro, :etapa)";
+                $clave = $_ENV['AES_KEY'];
                 $db = self::$database::getConnection();
                 $stmt = $db->prepare($sql);
                 $stmt->bindParam(":nombre", $nombre);
                 $stmt->bindParam(":email", $email);
                 $stmt->bindParam(":hora_registro", $hora_registro);
                 $stmt->bindParam(":etapa", $etapa);
+                $stmt->bindParam(":clave", $clave);
                 $stmt->execute();
                 $lastInsertID = $db->lastInsertId();
                 if($lastInsertID == 0){
@@ -135,5 +142,26 @@
             return self::$respuesta;
         }
         
+        public static function setFin($id, $clienteId){
+            try{
+                $fechaFin = date("Y-m-d H:i:s");
+
+                $sql = "UPDATE respuestas SET fecha_fin=:fecha_fin WHERE id = :id and id_datos_personales = :id_datos_personales";
+                $db = self::$database::getConnection();
+                $stmt = $db->prepare($sql);
+                $stmt->bindParam(":id", $id);
+                $stmt->bindParam(":id_datos_personales", $clienteId);
+                $stmt->bindParam(":fecha_fin", $fechaFin);
+                $stmt->execute();
+                
+                self::$respuesta["status"] = "ok";
+                self::$respuesta["mensaje"] = "Registro Exitoso";
+                
+            }catch(PDOException $e){
+                self::$respuesta["status"] = "error";
+                self::$respuesta["mensaje"] = $e->getMessage();
+            }
+            return self::$respuesta;
+        }
         
     }

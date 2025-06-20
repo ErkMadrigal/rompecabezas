@@ -3,9 +3,8 @@
 <main class="">
     <div class="text-center mt-5">&nbsp;</div>
     <div class="d-grid gap-2 col-8 mx-auto">
-        <h1 class="text-center mt-5 mb-3 gradient-text">¿Cómo participar?</h1>
-        <strong class="text-center text-white mb-4">Memoriza las imágenes y arma los dos
-            rompecabezas en eI menor tiempo posible.</strong>
+        <h1 class="text-center mt-5 mb-3 gradient-text">¿Listo para comenzar?</h1>
+        <strong class="text-center text-white mb-4">Memoriza la imagen y arma el rompecabezas</strong>
     </div>
     <div class="d-grid gap-2 col-10 mx-auto">
         <div class="card glass-card">

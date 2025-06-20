@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function() {
                   localStorage.setItem('respuesta_id', data.last_insert_id_respuesta);
                   localStorage.setItem('client_id', data.last_insert_id_client);
                   setInterval(() => {
-                    window.location.href = 'first';
+                    window.location.href = 'instrucciones';
                   }, 3000); // Redirigir después de 3 segundos
               })
               .catch(error => {
@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', function() {
             case 0:
                 // Si la etapa es 0, redirigir a la página de inicio
                 if (localStorage.getItem('client_id') !== null || localStorage.getItem('respuesta_id') !== null) {
-                    window.location.href = 'first';
+                    window.location.href = 'instrucciones';
                 }
                 break;
             case 1:

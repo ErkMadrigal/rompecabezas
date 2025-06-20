@@ -32,7 +32,7 @@
                                 <input type="checkbox" class="form-check-input" id="terminosCheck">
                                 <label class="form-check-label" for="exampleCheck1"><a
                                         href="https://www.samsung.com/mx/info/terms-and-conditions"
-                                        target="_blank">Terminos y
+                                        target="_blank">Términos y
                                         condiciones</a></label>
                                 <div class="invalid-feedback">
                                     Es requerido aceptar los terminos

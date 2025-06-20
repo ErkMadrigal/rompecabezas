@@ -3,21 +3,21 @@
 <main class="">
     <div class="text-center mt-5">&nbsp;</div>
     <div class="d-grid gap-2 col-8 mx-auto">
-        <h1 class="text-center mt-5 mb-3 gradient-text">¡Ya casi lo logras!</h1>
-        <strong class="text-center text-white mb-4">Memoriza la siguiente imagen para completar
-            el segundo rompecabezas</strong>
+        <h1 class="text-center mt-5 mb-3 gradient-text">¿Cómo jugar?</h1>
+        <label class="text-center text-white mb-4">Memoriza las imágenes y arma los 2
+            rompecabezas en el menor tiempo posible</label>
     </div>
-    <div class="d-grid gap-2 col-10 mx-auto">
-        <div class="card glass-card">
-            <div class="card-body text-center">
-                <img src="./img/LEVEL2.png" alt="rompecabezas" class="img-fluid mb-3">
-            </div>
-        </div>
+
+    <div class="d-grid gap-2 col-8 mx-auto">
+        <h1 class="text-center mt-5 mb-3 gradient-text">¿Cómo ganar?</h1>
+        <label class="text-center text-white mb-4">Consigue el mejor tiempo y sé
+            uno de los 3 ganadores de un Galaxy</label>
     </div>
+
     <div class="mb-3 mt-5 text-center">
         <!-- From Uiverse.io by itay1313 -->
         <div class="body">
-            <button class="btn-play btn-play-hover" onclick="location.href='level_2'">
+            <button class="btn-play btn-play-hover" onclick="location.href='first'">
                 <span class="btn-play-text">comenzar</span>
             </button>
         </div>
